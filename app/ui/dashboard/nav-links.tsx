@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 
 import {
@@ -12,17 +12,33 @@ import clsx from "clsx";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
-const links:any = [
-    {name: 'Home', href: '/dashboard', icon: HomeIcon},
+interface LinkType {
+    name: string,
+    href: string,
+    icon: any
+}
+
+let linkObj1: LinkType = {
+    name: 'Home', href: '/dashboard',
+    icon: HomeIcon
+}
+let linkObj2: LinkType =
     {
         name: 'Invoices',
         href: '/dashboard/invoices',
         icon: DocumentDuplicateIcon
-    },
-    {name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon}
-]
+    }
+let linkObj3: LinkType =
+    {
+        name: 'Customers', href: '/dashboard/customers',
+        icon: UserGroupIcon
+    }
 
-console.log('type of links is:', typeof (links), links[0])
+const links: any = [
+    linkObj1,
+    linkObj2,
+    linkObj3
+]
 
 export default function NavLinks() {
 
@@ -31,21 +47,21 @@ export default function NavLinks() {
 
     return (
         <>
-            {links.map(link => {
-                const LinkIcon = link.icon
+            {links.map((linkE: any) => {
+                const LinkIcon = linkE.icon
                 return (
                     <Link
-                        key={link.name}
-                        href={link.href}
+                        key={linkE.name}
+                        href={linkE.href}
                         className={clsx(
-                            "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+                            'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
                             {
-                                'bg-sky-100 text-green-600': pathName === link.href
-                            }
+                                'bg-sky-100 text-pink-600': pathName === linkE.href,
+                            },
                         )}
                     >
                         <LinkIcon className="w-6"/>
-                        <p className="hidden md:block">{link.name}</p>
+                        <p className="hidden md:block">{linkE.name}</p>
                     </Link>
                 );
             })}
