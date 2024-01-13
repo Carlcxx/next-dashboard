@@ -34,7 +34,7 @@ let linkObj3: LinkType =
         icon: UserGroupIcon
     }
 
-const links: any = [
+const links: LinkType[] = [
     linkObj1,
     linkObj2,
     linkObj3
@@ -47,7 +47,7 @@ export default function NavLinks() {
 
     return (
         <>
-            {links.map((linkE: any) => {
+            {links.map((linkE: LinkType) => {
                 const LinkIcon = linkE.icon
                 return (
                     <Link
